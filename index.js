@@ -1,5 +1,6 @@
 const express = require('express')
-var morgan = require('morgan')
+const morgan = require('morgan')
+const cors = require('cors')
 
 morgan.token('body', function (req) {
     return JSON.stringify(req['body'])
@@ -7,6 +8,7 @@ morgan.token('body', function (req) {
 
 const app = express()
 
+app.use(cors())
 app.use(express.json())
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
 
@@ -32,6 +34,11 @@ let persons = [
       "number": "39-23-6423122"
     }
 ]
+
+app.get('/', (request, response) => {
+  const date = `${new Date()}`
+  response.send(`<p>Hello world! <br/> ${date}</p>`)
+})
 
 app.get('/info', (request, response) => {
     const info = `Phonebook has info for ${persons.length} people`
@@ -93,7 +100,7 @@ app.delete('/api/persons/:id', (request, response) => {
     response.status(204).end()
 })
 
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
