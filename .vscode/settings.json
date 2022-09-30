@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/568d087c-6591-40ae-9329-8be8ddd43623/AppServices/subscriptions/568d087c-6591-40ae-9329-8be8ddd43623/resourceGroups/lha_group/providers/Microsoft.Web/sites/lha",
+    "appService.deploySubpath": "."
+}

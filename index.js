@@ -28,15 +28,14 @@ const errorHandler = (error, request, response, next) => {
 
 app.use(errorHandler)
 
-app.get('/info', (request, response) => {
-  let count = 0
-  Person.find({}).then(result => {
-    count = result.length
-  })
-  const info = `Phonebook has info for ${count} people`
-  const date = `${new Date()}`
-  response.send(`<p>${info} <br/> ${date}</p>`)
-})
+// app.get('/info', (request, response) => {
+//   Person.count({}, (err, data) => {
+//     console.log('number', number)
+//       const info = `Phonebook has info for ${data} people`
+//       const date = `${new Date()}`
+//       response.send(`<p>${info} <br/> ${date}</p>`)
+//   });
+// })
 
 app.get('/api/persons', (request, response) => {
   Person.find({}).then(result => {
